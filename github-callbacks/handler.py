@@ -68,9 +68,10 @@ def github_webhook_listener(event, context):
         }
     print("Github-Event", event)
     event_body = json.loads(event.get("body"))
+    action = event_body.get("action")
     print("---------------------------------")
     print(
-        f'Github-Event: "{github_event}" with action: "{event_body.get("action")}"'
+        f'Github-Event: "{github_event}" with action: "{action}"'
     )
     print("---------------------------------")
     print("Payload", event_body)
