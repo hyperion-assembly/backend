@@ -1,0 +1,20 @@
+service: github-callbacks
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.9
+  environment:
+    GITHUB_WEBHOOK_SECRET: GITHUB_WEBHOOK_SECRET
+
+functions:
+  hello:
+    handler: handler.hello
+  github_webhook_listener:
+    handler: handler.github_webhook_listener
+    events:
+      - http:
+          path: webhook
+          method: post
+          cors: true
