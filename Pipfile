@@ -42,6 +42,7 @@ pytest-django = "==4.7.0"
 
 [dev-packages]
 pylint-django = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.11"
