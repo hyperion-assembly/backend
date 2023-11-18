@@ -60,6 +60,7 @@ jobs:
       - name: Test with pytest
         run: pytest
   deploy:
+    needs: [linter, pytest]
     name: deploy
     runs-on: ubuntu-latest
     strategy:
