@@ -75,7 +75,7 @@ jobs:
       - name: serverless deploy
         uses: serverless/github-action@v3.2
         with:
-          args: -c 'serverless plugin install --name serverless-python-requirements && serverless plugin install --name serverless-wsgi && serverless deploy --param="DATABASE_URL=${{ secrets.DATABASE_URL }}" --param="DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" '
+          args: -c 'serverless plugin install --name serverless-python-requirements && serverless plugin install --name serverless-wsgi && serverless deploy --param="DATABASE_URL=${{ secrets.DATABASE_URL }}" --param="DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" --param="GITHUB_WEBHOOK_SECRET=${{ secrets.GITHUB_WEBHOOK_SECRET }}"'
           entrypoint: /bin/sh
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
