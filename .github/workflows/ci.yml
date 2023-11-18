@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths-ignore: ["docs/**"]
+
+  push:
+    branches: ["main"]
+    paths-ignore: ["docs/**"]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0
+
+  pytest:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+
+    env:
+      # postgres://user:password@host:port/database
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: pipenv
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pipenv install
+
+      - name: Test with pytest
+        run: pytest
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - name: serverless deploy
+        uses: serverless/github-action@v3.2
+        with:
+          args: -c 'serverless plugin install --name serverless-python-requirements && serverless plugin install --name serverless-wsgi && serverless deploy --param="DATABASE_URL=${{ secrets.DATABASE_URL }}" --param="DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" '
+          entrypoint: /bin/sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
