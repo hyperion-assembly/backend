@@ -9,15 +9,6 @@ def sign_request_body(key, body):
     return f"sha1={hmac.new(key.encode(), body.encode(), sha1).hexdigest()}"
 
 
-def hello(event, context):
-    body = {
-        "message": "hello world",
-        "input": event,
-    }
-
-    return {"statusCode": 200, "body": json.dumps(body)}
-
-
 def github_webhook_listener(event, context):
     err_msg = None
     token = os.environ.get("GITHUB_WEBHOOK_SECRET")
@@ -70,9 +61,7 @@ def github_webhook_listener(event, context):
     event_body = json.loads(event.get("body"))
     action = event_body.get("action")
     print("---------------------------------")
-    print(
-        f'Github-Event: "{github_event}" with action: "{action}"'
-    )
+    print(f'Github-Event: "{github_event}" with action: "{action}"')
     print("---------------------------------")
     print("Payload", event_body)
 
