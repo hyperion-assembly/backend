@@ -6,14 +6,18 @@ backend for hyperion assembly
 
 ## Setup
 
+```bash
 brew install pipenv
-https://postgresapp.com - use version 15
+```
+Download, install and run Postgres version 15
+e.g. for Mac: https://postgresapp.com  
 
+```bash
 pipenv install
 pre-commit install
 createdb --username=postgres hyperion_backend
 python manage.py migrate
-
+```
 ## Settings
 
 Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
