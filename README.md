@@ -1,4 +1,6 @@
-# hyperion assembly backend
+![ha_landscape](https://github.com/hyperion-assembly/backend/assets/686075/37d7b6d1-4e6c-4eba-84eb-3255122ca756)
+
+# Hyperion Assembly backend
 
 backend for hyperion assembly
 
@@ -7,13 +9,18 @@ backend for hyperion assembly
 Create a .env file with your configuration. See .env.example for an example.
 
 
+```bash
 brew install pipenv
-https://postgresapp.com - use version 15
+```
+Download, install and run Postgres version 15
+e.g. for Mac: https://postgresapp.com  
 
+```bash
 pipenv install
 pre-commit install
 createdb --username=postgres hyperion_backend
 python manage.py migrate
+```
 
 ## Basic Commands
 
