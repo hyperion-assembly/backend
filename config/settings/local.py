@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="LOWa9kdiAbuEX9xcDGPL5shV9a0qrN5hKSWUYKt16iKRAj9Dnf7NpVM6nNRE5l5B",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "*"]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -42,8 +42,5 @@ INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
 INSTALLED_APPS += ["django_extensions"]  # noqa: F405
 
-# django-webpack-loader
 # ------------------------------------------------------------------------------
-# WEBPACK_LOADER["DEFAULT"]["CACHE"] = not DEBUG  # noqa: F405
-# Your stuff...
-# ------------------------------------------------------------------------------
+GITHUB_WEBHOOK_SECRET = env("GITHUB_WEBHOOK_SECRET", default=None)

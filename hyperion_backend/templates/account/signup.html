@@ -2,6 +2,8 @@
 
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% block head_title %}
   {% translate "Signup" %}
@@ -11,6 +13,11 @@
   <p>
     {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
   </p>
+
+  <p>all providers: 
+    {% get_providers %}
+  </p>
+
   <form class="signup"
         id="signup_form"
         method="post"

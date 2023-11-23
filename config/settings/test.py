@@ -33,8 +33,6 @@ TEMPLATES[0]["OPTIONS"]["debug"] = True  # type: ignore # noqa: F405
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = 'http://media.testserver'
-# django-webpack-loader
-# ------------------------------------------------------------------------------
-# WEBPACK_LOADER["DEFAULT"]["LOADER_CLASS"] = "webpack_loader.loader.FakeWebpackLoader"  # noqa: F405
-# Your stuff...
-# ------------------------------------------------------------------------------
+# --------------------- ---------------------------------------------------------
+
+GITHUB_WEBHOOK_SECRET = 'pssst_secret'

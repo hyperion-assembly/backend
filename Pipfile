@@ -8,16 +8,12 @@ python-slugify = "==8.0.1"
 pillow = "==10.1.0"
 argon2-cffi = "==23.1.0"
 whitenoise = "==6.6.0"
-redis = "==5.0.1"
-hiredis = "==2.2.3"
 django = "==4.2.7"
 django-environ = "==0.11.2"
 django-model-utils = "==4.3.1"
 django-allauth = "==0.58.2"
 django-crispy-forms = "==2.1"
 crispy-bootstrap5 = "==2023.10"
-django-redis = "==5.4.0"
-django-webpack-loader = "==2.0.1"
 werkzeug = {version = "==3.0.1", extras = ["watchdog"]}
 ipdb = "==0.13.13"
 psycopg = {version = "==3.1.12", extras = ["binary"]}
@@ -39,10 +35,16 @@ django-debug-toolbar = "==4.2.0"
 django-extensions = "==3.2.3"
 django-coverage-plugin = "==3.1.0"
 pytest-django = "==4.7.0"
+botocore = "*"
+requests = "*"
+django-storages = "*"
+dj-rest-auth = "*"
+thirdweb-sdk = "*"
 
 [dev-packages]
 pylint-django = "*"
 pytest = "*"
+zappa = "*"
 
 [requires]
 python_version = "3.11"

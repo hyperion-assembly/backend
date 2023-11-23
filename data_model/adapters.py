@@ -9,7 +9,6 @@ from django.http import HttpRequest
 
 if typing.TYPE_CHECKING:
     from allauth.socialaccount.models import SocialLogin
-    from hyperion_backend.users.models import User
 
 
 class AccountAdapter(DefaultAccountAdapter):
@@ -21,7 +20,7 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
     def is_open_for_signup(self, request: HttpRequest, sociallogin: SocialLogin) -> bool:
         return getattr(settings, "ACCOUNT_ALLOW_REGISTRATION", True)
 
-    def populate_user(self, request: HttpRequest, sociallogin: SocialLogin, data: dict[str, typing.Any]) -> User:
+    def populate_user(self, request: HttpRequest, sociallogin: SocialLogin, data: dict[str, typing.Any]):
         """
         Populates user information from social provider info.
 

@@ -2,12 +2,11 @@ from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
 
-class UsersConfig(AppConfig):
-    name = "hyperion_backend.users"
-    verbose_name = _("Users")
+class DataModelConfig(AppConfig):
+    name = "data_model"
 
     def ready(self):
         try:
-            import hyperion_backend.users.signals  # noqa: F401
+            import data_model.signals  # noqa: F401
         except ImportError:
             pass
