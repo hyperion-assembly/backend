@@ -4,6 +4,9 @@ backend for hyperion assembly
 
 ## Setup
 
+Create a .env file with your configuration. See .env.example for an example.
+
+
 brew install pipenv
 https://postgresapp.com - use version 15
 
@@ -11,10 +14,6 @@ pipenv install
 pre-commit install
 createdb --username=postgres hyperion_backend
 python manage.py migrate
-
-## Settings
-
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
 
 ## Basic Commands
 
@@ -24,7 +23,9 @@ Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings
 
 - To create a **superuser account**, use this command:
 
-      $ python manage.py createsuperuser
+```bash
+python manage.py createsuperuser
+```
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -32,20 +33,35 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy hyperion_backend
+```bash
+mypy hyperion_backend
+```
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+```bash
+coverage run -m pytest
+coverage html
+open htmlcov/index.html
+```
 
 #### Running tests with pytest
 
-    $ pytest
+```bash
+pytest
+```
+
+#### Testing Github Webhooks with local server
+
+```bash
+DJANGO_READ_DOT_ENV_FILE=True python manage.py runserver
+smee -p 8000 -P "/callbacks/github"
+```
 
 ## Deployment
 
-...
+```bash
+chmod +x zappa_deploy.sh
+./zappa_deploy.sh
+```

@@ -1,7 +1,7 @@
 import pytest
 
-from hyperion_backend.users.models import User
-from hyperion_backend.users.tests.factories import UserFactory
+from data_model.models import Contributor
+from data_model.tests.factories import ContributorFactory
 
 
 @pytest.fixture(autouse=True)
@@ -10,5 +10,5 @@ def media_storage(settings, tmpdir):
 
 
 @pytest.fixture
-def user(db) -> User:
-    return UserFactory()
+def contributor(db) -> Contributor:
+    return ContributorFactory()

@@ -77,17 +77,20 @@ DJANGO_APPS = [
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework.authtoken",
     "crispy_forms",
     "crispy_bootstrap5",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    # "webpack_loader",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.socialaccount",
+    # "allauth.socialaccount.providers.github",
+    # "dj_rest_auth",
 ]
 
 LOCAL_APPS = [
-    "hyperion_backend.users",
-    # Your stuff: custom apps go here
+    "data_model",
+    "callbacks",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -102,14 +105,16 @@ MIGRATION_MODULES = {"sites": "hyperion_backend.contrib.sites.migrations"}
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    # "allauth.account.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "users.User"
+# AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
+# LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+# LOGIN_URL = "account_login"
+
+REST_AUTH = []
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -188,7 +193,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "hyperion_backend.users.context_processors.allauth_settings",
+                "data_model.context_processors.allauth_settings",
             ],
         },
     }
@@ -271,24 +276,22 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "hyperion_backend.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "data_model.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "hyperion_backend.users.forms.UserSignupForm"}
+ACCOUNT_FORMS = {"signup": "data_model.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "hyperion_backend.users.adapters.SocialAccountAdapter"
+# SOCIALACCOUNT_ADAPTER = "data_model.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "hyperion_backend.users.forms.UserSocialSignupForm"}
-
-
-# django-webpack-loader
-# ------------------------------------------------------------------------------
-# WEBPACK_LOADER = {
-#     "DEFAULT": {
-#         "CACHE": not DEBUG,
-#         "STATS_FILE": BASE_DIR / "webpack-stats.json",
-#         "POLL_INTERVAL": 0.1,
-#         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+# SOCIALACCOUNT_FORMS = {"signup": "data_model.forms.UserSocialSignupForm"}
+# SOCIALACCOUNT_PROVIDERS = {
+#     "github": {
+#         "VERIFIED_EMAIL": True,
+#         "APP": {
+#             "client_id": env("GITHUB_CLIENT_ID", default=""),
+#             "secret": env("GITHUB_APP_SECRET", default=""),
+#         },
 #     }
 # }
-# Your stuff...
+
 # ------------------------------------------------------------------------------
+THIRDWEB_API_KEY = env("THIRDWEB_API_KEY", default="")

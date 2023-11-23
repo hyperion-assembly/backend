@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "aws_region": "us-east-1",
+        "project_name": "hyperion-assembly-backend",
+        "runtime": "python3.11",
+        "s3_bucket": "hyperion-assembly-backend-dev",
+        "django_settings": "config.settings.production",
+        "slim_handler": true,
+        "memory_size": 4096,
+        "timeout_seconds": 60,
+        "remote_env": "s3://hyperion-assembly-backend-dev/config_dev.json"
+    }
+}

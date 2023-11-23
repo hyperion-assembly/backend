@@ -5,27 +5,13 @@ from django.contrib.auth import get_user_model
 from factory import Faker, post_generation
 from factory.django import DjangoModelFactory
 
+from data_model.models import Contributor
 
-class UserFactory(DjangoModelFactory):
-    username = Faker("user_name")
+
+class ContributorFactory(DjangoModelFactory):
     email = Faker("email")
-    name = Faker("name")
-
-    @post_generation
-    def password(self, create: bool, extracted: Sequence[Any], **kwargs):
-        password = (
-            extracted
-            if extracted
-            else Faker(
-                "password",
-                length=42,
-                special_chars=True,
-                digits=True,
-                upper_case=True,
-                lower_case=True,
-            ).evaluate(None, None, extra={"locale": None})
-        )
-        self.set_password(password)
+    github_username = Faker("github_username")
+    github_id = Faker("github_id")
 
     @classmethod
     def _after_postgeneration(cls, instance, create, results=None):
@@ -35,5 +21,5 @@ class UserFactory(DjangoModelFactory):
             instance.save()
 
     class Meta:
-        model = get_user_model()
+        model = Contributor
         django_get_or_create = ["username"]
