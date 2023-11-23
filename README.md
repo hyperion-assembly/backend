@@ -18,9 +18,6 @@ pre-commit install
 createdb --username=postgres hyperion_backend
 python manage.py migrate
 ```
-## Settings
-
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
 
 ## Basic Commands
 
