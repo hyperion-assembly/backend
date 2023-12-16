@@ -173,3 +173,5 @@ cython_debug/
 .idea/
 node_modules
 .requirements.zip
+
+*.pem

@@ -38,10 +38,10 @@ botocore = "*"
 requests = "*"
 django-storages = "*"
 dj-rest-auth = "*"
-thirdweb-sdk = {editable = true, git = "https://github.com/thirdweb-dev/python-sdk"}
 pygithub = "*"
 web3 = "*"
 zappa = "*"
+thirdweb-sdk = {git = "git+https://github.com/thirdweb-dev/python-sdk"}
 
 [dev-packages]
 pylint-django = "*"

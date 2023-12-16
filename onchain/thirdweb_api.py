@@ -1,5 +1,4 @@
 from decimal import Decimal
-from typing import List, Optional
 from thirdweb import ThirdwebSDK
 from thirdweb.types import SDKOptions
 from thirdweb.types.settings.metadata import TokenContractMetadata
