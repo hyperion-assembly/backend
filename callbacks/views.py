@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-from callbacks.github import handle_github_event
+from callbacks.github_callbacks import handle_github_event
 
 logger = logging.getLogger(__name__)
 
@@ -53,16 +53,8 @@ def github_callback(request: HttpRequest):
     print("---------------------------------")
     print(f'Github-Event: "{github_event}" with action: "{action}"')
     print("---------------------------------")
-    print("Payload", event_body)
-
-    handle_github_event(github_event, action, event_body)
-
-    response = {
-        "body": json.dumps(
-            {
-                "input": event_body,
-            }
-        ),
-    }
+    response = handle_github_event(github_event, action, event_body)
+    print(f"Response: {response}")
+    print("---------------------------------\n\n")
 
     return JsonResponse(response, status=200)
