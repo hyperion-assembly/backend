@@ -41,11 +41,11 @@ dj-rest-auth = "*"
 thirdweb-sdk = {editable = true, git = "https://github.com/thirdweb-dev/python-sdk"}
 pygithub = "*"
 web3 = "*"
+zappa = "*"
 
 [dev-packages]
 pylint-django = "*"
 pytest = "*"
-zappa = "*"
 
 [requires]
 python_version = "3.10"
