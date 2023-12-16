@@ -16,7 +16,7 @@ django-crispy-forms = "==2.1"
 crispy-bootstrap5 = "==2023.10"
 werkzeug = {version = "==3.0.1", extras = ["watchdog"]}
 ipdb = "==0.13.13"
-psycopg = {version = "==3.1.12", extras = ["binary"]}
+psycopg = {version = "==3.1.15", extras = ["binary"]}
 django-stubs = {version = "*", extras = ["compatible-mypy"]}
 pytest = "==7.4.3"
 pytest-sugar = "==0.9.7"
