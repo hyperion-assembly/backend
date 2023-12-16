@@ -293,5 +293,21 @@ ACCOUNT_FORMS = {"signup": "data_model.forms.UserSignupForm"}
 #     }
 # }
 
+# Alchemy
+# ------------------------------------------------------------------------------
+ALCHEMY_API_KEY = env("ALCHEMY_API_KEY", default="")
+
+# Thirdweb
 # ------------------------------------------------------------------------------
 THIRDWEB_API_KEY = env("THIRDWEB_API_KEY", default="")
+TEST_PRIVATE_KEY = env("TEST_PRIVATE_KEY", default="")
+
+# Frontend
+# ------------------------------------------------------------------------------
+HYPERION_FRONTEND_URL = env("HYPERION_FRONTEND_URL", default="https://hyperionassembly.org")
+
+# Github
+# ------------------------------------------------------------------------------
+GITHUB_APP_ID = env("GITHUB_APP_ID", default="")
+# RSA Private Key from 
+GITHUB_APP_PRIVATE_KEY = env("GITHUB_APP_PRIVATE_KEY", default="").replace(r'\n', '\n')

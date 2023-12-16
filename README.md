@@ -8,33 +8,34 @@ backend for hyperion assembly
 
 Create a .env file with your configuration. See .env.example for an example.
 
-
 ```bash
-brew install pipenv
+brew install postgresql pipenv pyenv pre-commit
 ```
 Download, install and run Postgres version 15
 e.g. for Mac: https://postgresapp.com  
 
 ```bash
+pyenv install 3.10
 pipenv install
+psql -c 'create database hyperion_backend_dev;'
 pre-commit install
-createdb --username=postgres hyperion_backend
+pipenv shell
 python manage.py migrate
+python manage.py runserver
 ```
+Now you can visit 
+`http://127.0.0.1:8000/admin/`
+to login to the local Hyperion Admin page.
+To login follow `Setting up your user account` below
 
 ## Basic Commands
 
-### Setting Up Your Users
-
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
-- To create a **superuser account**, use this command:
+### Setting up your user account
+Create a **superuser account** with this command:
 
 ```bash
 python manage.py createsuperuser
 ```
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
 ### Type checks
 
