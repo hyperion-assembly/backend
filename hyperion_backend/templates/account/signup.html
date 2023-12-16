@@ -21,7 +21,8 @@
   <form class="signup"
         id="signup_form"
         method="post"
-        action="{% url 'account_signup' %}">
+        <!-- action="{% url 'account_signup' %}" -->
+        >
     {% csrf_token %}
     {{ form|crispy }}
     {% if redirect_field_value %}
