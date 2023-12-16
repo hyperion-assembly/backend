@@ -1,13 +1,12 @@
-import logging
-from typing import Union
 from django.conf import settings
 from github import Auth, GithubIntegration, IssueComment
 
-gi = GithubIntegration(auth=Auth.AppAuth(app_id=settings.GITHUB_APP_ID, private_key=settings.GITHUB_APP_PRIVATE_KEY))
+def get_github_integration_sdk() -> GithubIntegration:
+    return GithubIntegration(auth=Auth.AppAuth(app_id=settings.GITHUB_APP_ID, private_key=settings.GITHUB_APP_PRIVATE_KEY))
 
 
 def get_github_sdk_for_repo(repo_path: str):
-    app_installation = gi.get_repo_installation(repo_path.split("/")[0], repo_path.split("/")[1])
+    app_installation = get_github_integration_sdk().get_repo_installation(repo_path.split("/")[0], repo_path.split("/")[1])
     return app_installation.get_github_for_installation()
 
 
