@@ -2,7 +2,7 @@
     "dev": {
         "aws_region": "us-east-1",
         "project_name": "hyperion-assembly-backend",
-        "runtime": "python3.11",
+        "runtime": "python3.10",
         "s3_bucket": "hyperion-assembly-backend-dev",
         "django_settings": "config.settings.production",
         "slim_handler": true,

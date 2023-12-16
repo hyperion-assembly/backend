@@ -17,8 +17,7 @@ crispy-bootstrap5 = "==2023.10"
 werkzeug = {version = "==3.0.1", extras = ["watchdog"]}
 ipdb = "==0.13.13"
 psycopg = {version = "==3.1.12", extras = ["binary"]}
-mypy = "==1.6.1"
-django-stubs = {version = "==4.2.6", extras = ["compatible-mypy"]}
+django-stubs = {version = "*", extras = ["compatible-mypy"]}
 pytest = "==7.4.3"
 pytest-sugar = "==0.9.7"
 sphinx = "==7.2.6"
@@ -39,7 +38,9 @@ botocore = "*"
 requests = "*"
 django-storages = "*"
 dj-rest-auth = "*"
-thirdweb-sdk = "*"
+thirdweb-sdk = {editable = true, git = "https://github.com/thirdweb-dev/python-sdk"}
+pygithub = "*"
+web3 = "*"
 
 [dev-packages]
 pylint-django = "*"
@@ -47,4 +48,4 @@ pytest = "*"
 zappa = "*"
 
 [requires]
-python_version = "3.11"
+python_version = "3.10"
